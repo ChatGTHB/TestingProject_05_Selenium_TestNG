@@ -65,7 +65,7 @@ public class TestsElements {
     public WebElement confirmCreateCustomer;
 
     @FindBy(xpath = "(//table)[2]/tbody/tr/td[2]")
-    public List<WebElement> searchCustomerMailList;
+    public WebElement searchCustomerMailList;
 
     @FindBy(xpath = "//a[@class='btn btn-default']")
     public WebElement customerEditButton;
