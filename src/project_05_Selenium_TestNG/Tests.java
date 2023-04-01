@@ -102,6 +102,8 @@ public class Tests extends BaseDriverParameter {
 
         wait.until(ExpectedConditions.visibilityOfAllElements(te.navMenu));
 
+        wait.until(ExpectedConditions.elementToBeClickable(te.customersSearchEmail));
+
         actions.click(te.customersSearchEmail)
                 .sendKeys(randomMail)
                 .sendKeys(Keys.TAB)
@@ -142,11 +144,11 @@ public class Tests extends BaseDriverParameter {
 
         te.customerSearchButton.click();
 
-        js.executeScript("arguments[0].scrollIntoView(true);", te.customerEditButton);
+        js.executeScript("arguments[0].scrollIntoView(false);", te.customerEditButton);
         js.executeScript("arguments[0].click();", te.customerEditButton);
 
         wait.until(ExpectedConditions.elementToBeClickable(te.deleteButton));
-        js.executeScript("arguments[0].scrollIntoView(true);", te.deleteButton);
+        js.executeScript("arguments[0].scrollIntoView(false);", te.deleteButton);
         js.executeScript("arguments[0].click();", te.deleteButton);
         js.executeScript("arguments[0].click();", te.deleteConfirm);
 
