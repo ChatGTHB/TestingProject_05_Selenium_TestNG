@@ -29,14 +29,12 @@ public class BaseDriverParameter {
 
         switch (browser.toLowerCase()) {
             case "firefox":
-                System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");
                 driver = new FirefoxDriver();
                 break;
             case "edge":
                 driver = new EdgeDriver();
                 break;
             default:
-                System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
                  driver = new ChromeDriver();
                 break;
         }
