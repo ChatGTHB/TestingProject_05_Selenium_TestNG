@@ -2,7 +2,6 @@ package utility;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -40,14 +39,9 @@ public class BaseDriverParameter {
         }
 
         driver.manage().window().maximize();
-
-        Duration duration = Duration.ofSeconds(30);
-        driver.manage().timeouts().pageLoadTimeout(duration);
-
-        driver.manage().timeouts().implicitlyWait(duration);
-
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-
         loginTest();
     }
 
@@ -55,17 +49,17 @@ public class BaseDriverParameter {
 
         driver.get("https://admin-demo.nopcommerce.com/login?");
 
-        TestsElements te = new TestsElements(driver);
+        TestsElements elements = new TestsElements(driver);
 
-        te.eMail.clear();
-        te.eMail.sendKeys("admin@yourstore.com");
+        elements.eMail.clear();
+        elements.eMail.sendKeys("admin@yourstore.com");
 
-        te.password.clear();
-        te.password.sendKeys("admin");
+        elements.password.clear();
+        elements.password.sendKeys("admin");
 
-        te.loginButton.click();
+        elements.loginButton.click();
 
-        Assert.assertTrue(te.logoutLink.isDisplayed());
+        Assert.assertTrue(elements.logoutLink.isDisplayed());
     }
 
     @AfterClass

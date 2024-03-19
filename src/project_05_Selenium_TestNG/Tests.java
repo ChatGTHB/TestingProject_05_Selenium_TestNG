@@ -29,36 +29,36 @@ public class Tests extends BaseDriverParameter {
     @Test(priority = 2)
     void checkLeftNavMenu() {
 
-        TestsElements te = new TestsElements(driver);
+        TestsElements elements = new TestsElements(driver);
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        for (int i = 1; i < te.navMenu.size(); i++) {
-            wait.until(ExpectedConditions.visibilityOfAllElements(te.navMenu));
-            js.executeScript("arguments[0].scrollIntoView(true);", te.navMenu.get(i));
-            // System.out.println("te.navMenu.get(i) = " + te.navMenu.get(i).getText());
-            te.navMenu.get(i).click();
-            Assert.assertTrue(te.navAltMenu.get(0).isEnabled());
-            // System.out.println("te.navAltMenu.get(0) = " + te.navAltMenu.get(0).getText());
-            Assert.assertTrue(te.navAltMenu.get(0).isDisplayed());
+        for (int i = 1; i < elements.navMenu.size(); i++) {
+            wait.until(ExpectedConditions.visibilityOfAllElements(elements.navMenu));
+            js.executeScript("arguments[0].scrollIntoView(true);", elements.navMenu.get(i));
+            // System.out.println("elements.navMenu.get(i) = " + elements.navMenu.get(i).getText());
+            elements.navMenu.get(i).click();
+            Assert.assertTrue(elements.navAltMenu.get(i).isEnabled());
+            // System.out.println("elements.navAltMenu.get(0) = " + elements.navAltMenu.get(0).getText());
+            Assert.assertTrue(elements.navAltMenu.get(i).isDisplayed());
         }
     }
 
     @Test(priority = 3)
     void createCustomer() {
 
-        TestsElements te = new TestsElements(driver);
+        TestsElements elements = new TestsElements(driver);
         Actions actions = new Actions(driver);
         randomMail = "testing" + (int) (Math.random() * 10000) + "@email.com";
 
-        wait.until(ExpectedConditions.visibilityOfAllElements(te.navMenu));
-        te.navMenu.get(3).click();
+        wait.until(ExpectedConditions.visibilityOfAllElements(elements.navMenu));
+        elements.navMenu.get(3).click();
 
-        wait.until(ExpectedConditions.visibilityOfAllElements(te.navAltMenu));
-        te.navAltMenu.get(0).click();
+        wait.until(ExpectedConditions.visibilityOfAllElements(elements.navAltMenu));
+        elements.navAltMenu.get(0).click();
 
-        te.addButton.click();
+        elements.addButton.click();
 
-        Action action = actions.click(te.customerCreateInputs.get(0))
+        Action action = actions.click(elements.customerCreateInputs.get(0))
                 .sendKeys(randomMail)
                 .sendKeys(Keys.TAB)
                 .sendKeys("password")
@@ -67,19 +67,19 @@ public class Tests extends BaseDriverParameter {
                 .sendKeys(Keys.TAB)
                 .sendKeys("Last name").build();
         action.perform();
-        te.customerCreateGenders.get(0).click();
+        elements.customerCreateGenders.get(0).click();
 
-        action = actions.click(te.customerCreateBirthdayCalender)
+        action = actions.click(elements.customerCreateBirthdayCalender)
                 .sendKeys("01.01.2000")
                 .sendKeys(Keys.TAB)
                 .sendKeys("Company name").build();
         action.perform();
 
-        te.customerCreateTaxInput.click();
-        te.customerCreateInputs.get(8).click();
-        te.customerCreateNewsletters.get(0).click();
+        elements.customerCreateTaxInput.click();
+        elements.customerCreateInputs.get(8).click();
+        elements.customerCreateNewsletters.get(0).click();
 
-        action = actions.click(te.customerCreateInputs.get(10))
+        action = actions.click(elements.customerCreateInputs.get(10))
                 .sendKeys("Vendor 1")
                 .click()
                 .sendKeys(Keys.TAB)
@@ -87,9 +87,9 @@ public class Tests extends BaseDriverParameter {
                 .sendKeys("Admin comment").build();
         action.perform();
 
-        te.saveButton.click();
+        elements.saveButton.click();
 
-        Assert.assertTrue(te.successMessage.isDisplayed());
+        Assert.assertTrue(elements.successMessage.isDisplayed());
     }
 
     @Test(priority = 4, dependsOnMethods = "createCustomer")
